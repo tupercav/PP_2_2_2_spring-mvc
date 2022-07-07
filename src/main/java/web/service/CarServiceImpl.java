@@ -3,9 +3,7 @@ package web.service;
 import org.springframework.stereotype.Service;
 import web.model.Car;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Random;
+import java.util.*;
 
 @Service
 public class CarServiceImpl implements CarService {
@@ -28,12 +26,18 @@ public class CarServiceImpl implements CarService {
             return carList;
         } else {
             List<Car> carsToBringToView = new ArrayList<>();
+            Collections.shuffle(carList);
             for (int i = 0; i < qty; i++) {
-                Random random = new Random();
-                int upperbound = carList.size();
-                int randomIndex = random.nextInt(upperbound);
-                carsToBringToView.add(carList.get(randomIndex));
+                carsToBringToView.add(carList.get(i));
             }
+//            for (int i = 0; i < qty; i++) {
+//                Random random = new Random();
+//                int upperbound = carList.size();
+//                int randomIndex = random.nextInt(upperbound);
+//
+//                carsToBringToView.add(carList.get(randomIndex));
+//                carList.remove(randomIndex);
+//            }
             return carsToBringToView;
         }
     }
