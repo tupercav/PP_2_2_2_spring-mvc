@@ -22,14 +22,22 @@ public class CarServiceImpl implements CarService {
         return carList;
     }
     public List<Car> getDesiredQtyCars(int qty) {
-        if (qty >= 5) {
-            return carList;
-        } else {
-            List<Car> carsToBringToView = new ArrayList<>();
-            Collections.shuffle(carList);
-            for (int i = 0; i < qty; i++) {
-                carsToBringToView.add(carList.get(i));
-            }
+        Collections.shuffle(carList);
+        return (qty >= 5) ? carList : carList.subList(0, qty);
+
+
+
+        //Вытаскивание без дублей
+//        if (qty >= 5) {
+//            return carList;
+//        } else {
+//            List<Car> carsToBringToView = new ArrayList<>();
+//            Collections.shuffle(carList);
+//            for (int i = 0; i < qty; i++) {
+//                carsToBringToView.add(carList.get(i));
+//            }
+
+            //Просто рандомное вытаскивание из списка
 //            for (int i = 0; i < qty; i++) {
 //                Random random = new Random();
 //                int upperbound = carList.size();
@@ -38,7 +46,7 @@ public class CarServiceImpl implements CarService {
 //                carsToBringToView.add(carList.get(randomIndex));
 //                carList.remove(randomIndex);
 //            }
-            return carsToBringToView;
-        }
+//            return carsToBringToView;
+//        }
     }
 }
